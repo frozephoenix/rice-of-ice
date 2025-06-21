@@ -1,0 +1,153 @@
+* {
+    all: initial;
+    font-family: NotoSans;
+    font-size: 15px;
+    font-weight: 500;
+    font-size: 101%;
+    color: black;
+    margin: 2px 0;
+}
+
+*:first-child {
+    margin-left: 3px;
+}
+
+*:last-child {
+    margin-right: 5px;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: black;
+}
+
+window#waybar.empty {
+    background-color: transparent;
+}
+
+tooltip {
+    background: #c6bf88;
+    border: none;
+    border-radius: 10px;
+    color: black;
+}
+
+tooltip label {
+    padding: 4px;
+    color: black;
+}
+
+#custom-appmenu {
+    background: transparent;
+    color: black;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 2em;
+    padding: 2px 20px;
+    margin-right: 0;
+    transition-duration: 0.1s;
+}
+
+#custom-appmenu:hover {
+    color: black;
+    background-color: #c6bf88;
+    transition-duration: 0.1s;
+}
+
+#workspaces {
+    padding: 0;
+    margin: 0;
+    background-color: #c6bf88;
+    border: solid 5px #c6bf88;
+    border-radius: 2em;
+}
+
+#workspaces button {
+    background-color: #c6bf88;
+    margin: 0;
+    padding: 0 20px;
+    border: none;
+    border-radius: 2em;
+    transition-duration: 0.1s;
+}
+
+#workspaces button:not(.active) > * {
+    opacity: 0.5;
+    padding: 0 10px;
+    transition-duration: 0.1s;
+}
+
+#workspaces button:not(.active) {
+}
+
+#workspaces button.active:first-child {
+    padding-left: 0;
+}
+
+#workspaces button.active:last-child {
+    padding-right: 0;
+}
+
+#workspaces button.active:not(:first-child):not(:last-child) {
+    padding: 0 10px;
+}
+
+#workspaces button.active > * {
+    color: black;
+    font-size: 16px;
+    background-color: #e1ddc0;
+    padding: 0 30px;
+    margin: 0 0;
+    transition-duration: 0.1s;
+    border-radius: 2em;
+}
+
+#workspaces button:hover {
+    color: black;
+    background: #c6bf88;
+    box-shadow: none;
+    transition-duration: 0.1s;
+}
+
+#window {
+    background-color: #e1ddc0;
+    color: #00a19c;
+    padding: 0 15px;
+    border: none;
+    transition-duration: 0.1s;
+}
+
+#window:hover {
+    background: #c6bf88;
+    border-radius: 2em;
+    transition-duration: 0.1s;
+}
+
+#clock,
+#battery,
+#power-profiles-daemon,
+#network,
+#pulseaudio,
+#tray,
+#mpris {
+    background: transparent;
+    color: black;
+    padding: 0 12px;
+    border: none;
+    margin: 0;
+    transition-duration: 0.1s;
+}
+
+#clock:hover,
+#battery:hover,
+#power-profiles-daemon:hover,
+#network:hover,
+#pulseaudio:hover,
+#mpris:hover {
+    background-color: #c6bf88;
+    border-radius: 2em;
+    color: #111111;
+    border: none;
+    transition-duration: 0.1s;
+    padding: 0 15px;
+}

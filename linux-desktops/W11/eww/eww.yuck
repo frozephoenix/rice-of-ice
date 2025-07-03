@@ -1,0 +1,37 @@
+(defpoll getstat
+    :interval "5s"
+    "~/.config/eww/scripts/getstat.sh"
+)
+
+(defwidget status[]
+    (box
+        :orientation "v"
+        :spacing 5
+        (label :text "System Status" :class "title")
+        (label :text "CPU: ${getstat.cpu}" :class "stat")
+        (label :text "RAM: ${getstat.mem}" :class "stat")
+        (label :text "Disk: ${getstat.disk}" :class "stat")
+    )
+)
+
+(defwidget bar [value max]
+    (box :class "bar"
+        (box :class "bar-fill"
+             :style (format "width: %s%%;" value)
+        )
+    )
+)
+
+(defwindow main
+    :monitor 0
+    :geometry (geometry :x "20px"
+                        :y "20px"
+                        :width "300px"
+                        :height "150px"
+                        :anchor "top left"
+              )
+    :stacking "bg"
+    :wm-ignore true
+    (status)
+    ;;(bar :value ${getstat.cpu} :max 100)
+)

@@ -1,0 +1,187 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top",
+  "height": 30, // Waybar height (to be removed for auto height)
+  // "width": 1280, // Waybar width
+  "spacing": 4, // Gaps between modules (4px)
+  "reload_style_on_change": true,
+  "modules-left": [
+    "custom/appmenu",
+    "clock",
+    "power-profiles-daemon",
+    "custom/weather",
+    "privacy",
+  ],
+  "modules-center": ["custom/power", "hyprland/workspaces", "custom/noti"],
+  "modules-right": [
+    "mpris",
+    "pulseaudio",
+    "network",
+    "tray",
+    "battery",
+  ],
+
+  "custom/appmenu": {
+    "format": "",
+    "on-click": "rofi -show drun",
+    "tooltip": true,
+    "tooltip-format": " App Launcher",
+  },
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    //"warp-on-scroll": false,
+    "format": "{icon}",
+    "format-icons": {
+      "urgent": "",
+      "focused": "",
+      "default": "",
+    },
+    "persistent-workspaces": {
+      "*": 5,
+    },
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+  },
+  "clock": {
+    "format": "{:%H:%M  }",
+    "tooltip-format": "<big>{:%Y %B %d}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y/%m/%d}",
+  },
+  "battery": {
+    "tooltip": true,
+    "tooltip-format": "{timeTo}\nPower: {power}w",
+    "interval": 5,
+    "states": {
+      // "good": 95,
+      "warning": 30,
+      "critical": 15,
+    },
+    "format": "{capacity}%  {icon}",
+    "format-full": "{capacity}%  {icon}",
+    "format-charging": "{capacity}%  {icon} ",
+    "format-plugged": "{capacity}%  ",
+    // "format-alt": "{time} {icon}",
+    // "format-good": "", // An empty format will hide the module
+    // "format-full": "",
+    "format-icons": ["", "", "", "", ""],
+    "on-click": "better-control -B",
+  },
+
+  "battery#bat2": {
+    "bat": "BAT2",
+  },
+
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": "",
+    },
+  },
+
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%)  ",
+    "format-ethernet": "Wired  󰈀",
+    "tooltip-format": "{ifname} via {gwaddr}  ",
+    "tooltip-format-ethernet": "Device: {ifname}\rIP Address: {ipaddr}/{cidr}\rDefault Gateway: {gwaddr}",
+    "tooltip-format-wifi": "Frequency {frequency}GHz",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "on-click": "better-control -wm",
+  },
+
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    //"format": "{volume}% {icon} {format_source}",
+    "format": "{volume}%  {icon}",
+    "format-bluetooth": "{volume}%  {icon}",
+    "format-bluetooth-muted": "󰝟 {icon}",
+    "format-muted": "󰝟",
+    "format-source": "  {volume}% ",
+    "format-source-muted": " ",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""],
+    },
+    "on-click": "pavucontrol",
+  },
+  "custom/power": {
+    "format": "",
+    "tooltip": true,
+    "tooltip-label": "Power Options",
+    "on-click": "wlogout",
+  },
+  "mpris": {
+    "format": "{player_icon}  {artist} - {title}  {status_icon}",
+    "format-paused": "{player_icon}  {artist} - {title}  {status_icon}",
+    "player-icons": {
+      "default": "",
+      "mpv": "🎵",
+      "cmus": "󰎇",
+      "spotify": "",
+    },
+    "status-icons": {
+      "default": "",
+      "playing": "",
+      "paused": "",
+      "stopped": "",
+    },
+    // "ignored-players": ["firefox"]
+    "title-len": 22,
+    "artist-len": 25,
+  },
+
+  "privacy": {
+    "icon-spacing": 10,
+    "modules": [
+      {
+        "type": "screenshare",
+      },
+      {
+        "type": "audio-in",
+      },
+    ],
+  },
+
+  "custom/noti": {
+    //"format": "",
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "",
+      "none": "",
+      "dnd-notification": "",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": "",
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true,
+  },
+
+  "custom/weather": {
+    "exec": "$HOME/.config/waybar/hyprland/scripts/get_weather.sh Chennai+India",
+    "return-type": "json",
+    "format": "{text}",
+    "interval": 3600,
+  },
+}
